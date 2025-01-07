@@ -40,3 +40,45 @@ menuToggle.addEventListener("click", (e) => {
     });
   }
 });
+
+// For the video Played
+
+const video = document.getElementById('myVideo');
+const soundButton = document.getElementById('soundButton');
+
+// Show controls only when video is visible
+function checkVideoVisibility() {
+  const rect = video.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom >= 0) {
+    video.play(); // Autoplay the video muted
+  } else {
+    video.pause();
+  }
+}
+
+// Toggle sound on button click
+function toggleSound() {
+  if (video.muted) {
+    video.muted = false;
+    soundButton.textContent = '🔊'; // Change icon
+  } else {
+    video.muted = true;
+    soundButton.textContent = '🔇'; // Change icon
+  }
+}
+
+// Toggle fullscreen mode
+function toggleFullScreen() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.mozRequestFullScreen) { // Firefox
+    video.mozRequestFullScreen();
+  } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
+    video.webkitRequestFullscreen();
+  } else if (video.msRequestFullscreen) { // IE/Edge
+    video.msRequestFullscreen();
+  }
+}
+
+window.addEventListener('scroll', checkVideoVisibility);
+window.addEventListener('load', checkVideoVisibility);
