@@ -1109,6 +1109,7 @@ body {
 #main_nav .active,
 #main_nav .active_branch {
     color: #2c91d2;
+    background-color: transparent;
 }
 
 #main_nav li {
