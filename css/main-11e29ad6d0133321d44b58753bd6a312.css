@@ -3607,7 +3607,7 @@ body {
 }
 
 .Main_Title_by_Karim {
-    font-size: 1.6em;
+    font-size: 1.5em;
     line-height: 1.3em;
     margin-bottom: 0.4em;
     font-weight: 700;
@@ -3619,10 +3619,11 @@ body {
     justify-content: center;
     padding-top: 1em;
     padding-bottom: 0.3em;
+    margin: 0 0.3em;
 }
 
 .Title_Box_by_Karim .lantern_photo {
-    height: 1.9em;
+    height: 1.8em;
     margin-top: -18px;
 }
 
