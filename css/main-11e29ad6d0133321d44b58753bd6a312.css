@@ -3607,9 +3607,9 @@ body {
 }
 
 .Main_Title_by_Karim {
-    font-size: 1.3rem;
-    line-height: 1.3em;
-    margin-bottom: 0.4em;
+    font-size: 1.5rem;
+    line-height: 1.3rem;
+    margin-bottom: 0.4rem;
     font-weight: 700;
 }
 
@@ -3618,8 +3618,8 @@ body {
     align-items: center;
     justify-content: center;
     padding-top: 1em;
-    padding-bottom: 0.3em;
-    margin: 0 0.3em;
+    padding-bottom: 0.3rem;
+    margin: 0 0.3rem;
 }
 
 .Title_Box_by_Karim .lantern_photo {
@@ -3639,7 +3639,7 @@ body {
     font-family: "Amiri", serif;
     /* font-family: "Aref Ruqaa", serif; */
     /* word-spacing: 0.2em; */
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 700;
     font-style: normal;
     line-height: 1.5;
@@ -3653,12 +3653,13 @@ body {
 }
 
 .final_quote {
-    font-size: 1.2em;
-    line-height: 1.3em;
-    margin-bottom: 0.4em;
-    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
     padding: 0px 10px;
     text-align: center;
+    font-family: "Cochin W01 Roman", "Times New Roman", "Times", serif;
 }
 
 .final_quote:before {
