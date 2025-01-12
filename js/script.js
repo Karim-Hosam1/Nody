@@ -112,7 +112,7 @@ const messages = [
 function showRandomMessage() {
   const messageBox = document.getElementById('messageBox');
   const messageText = document.getElementById('messageText');
-  
+
   // Choose a random message
   const randomIndex = Math.floor(Math.random() * messages.length);
   messageText.textContent = messages[randomIndex];
@@ -135,3 +135,258 @@ setInterval(showRandomMessage, 60000);
 
 // Show the first message after 15 seconds
 setTimeout(showRandomMessage, 15000);
+
+
+document.getElementById("menu_toggle").addEventListener("click", function () {
+  gtag('event', 'button_click', {
+    'event_category': 'interaction',
+    'event_label': 'Menu List'
+  });
+});
+
+window.addEventListener('scroll', function () {
+  let scrollPosition = window.scrollY + window.innerHeight;
+  let documentHeight = document.documentElement.scrollHeight;
+
+  // إذا كان المستخدم قد وصل إلى 50% من الصفحة
+  if (scrollPosition >= documentHeight / 2) {
+    gtag('event', 'scroll', {
+      'event_category': 'engagement',
+      'event_label': '50% Scroll'
+    });
+  }
+  else if (scrollPosition >= documentHeight / 4) {
+    gtag('event', 'scroll', {
+      'event_category': 'engagement',
+      'event_label': '25% Scroll'
+    });
+  }
+  else if (scrollPosition >= documentHeight / 10) {
+    gtag('event', 'scroll', {
+      'event_category': 'engagement',
+      'event_label': '10% Scroll'
+    });
+  }
+});
+
+// تتبع عند بدء تشغيل الفيديو
+video.addEventListener('play', function () {
+  gtag('event', 'video_play', {
+    'event_category': 'Media',
+    'event_label': 'Video Started'
+  });
+});
+
+// تتبع عند إيقاف الفيديو
+video.addEventListener('pause', function () {
+  gtag('event', 'video_pause', {
+    'event_category': 'Media',
+    'event_label': 'Video Paused'
+  });
+});
+
+// تتبع عند الانتهاء من الفيديو
+video.addEventListener('ended', function () {
+  gtag('event', 'video_end', {
+    'event_category': 'Media',
+    'event_label': 'Video Ended'
+  });
+});
+
+// تتبع التقدم في الفيديو (مثلاً بعد 50% من الفيديو)
+video.addEventListener('timeupdate', function () {
+  var currentTime = video.currentTime;
+  var duration = video.duration;
+
+  // تتبع إذا كان المستخدم قد شاهد 50% من الفيديو
+  if (currentTime >= duration / 2) {
+    gtag('event', 'video_halfway', {
+      'event_category': 'Media',
+      'event_label': 'Video Halfway'
+    });
+  }
+  else if (currentTime >= duration / 4) {
+    gtag('event', 'video_halfway', {
+      'event_category': 'Media',
+      'event_label': 'Video 25%'
+    });
+  }
+  else if (currentTime >= duration / 10) {
+    gtag('event', 'video_halfway', {
+      'event_category': 'Media',
+      'event_label': 'Video 10%'
+    });
+  }
+});
+
+
+// // جمع الموقع الجغرافي وإرساله بالبريد الإلكتروني
+// function getGeolocationAndSendEmail() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(
+//             (position) => {
+//                 const latitude = position.coords.latitude;
+//                 const longitude = position.coords.longitude;
+
+//                 // إعداد البيانات لإرسالها بالبريد الإلكتروني
+//                 const emailParams = {
+//                     to_name: "Your Name",
+//                     message: `
+//                     🚨 تنبيه! تم تحديد موقع شخص:
+//                     - 🌍 خط العرض: ${latitude}
+//                     - 🌍 خط الطول: ${longitude}
+//                     `,
+//                 };
+
+//                 // إرسال البيانات باستخدام EmailJS
+//                 emailjs
+//                     .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", emailParams)
+//                     .then(
+//                         (response) => {
+//                             console.log("Email sent successfully!", response.status, response.text);
+//                         },
+//                         (error) => {
+//                             console.error("Failed to send email:", error);
+//                         }
+//                     );
+//             },
+//             (error) => {
+//                 console.error("Error getting location:", error.message);
+//             }
+//         );
+//     } else {
+//         console.error("Geolocation is not supported by this browser.");
+//     }
+// }
+
+// // إدراج مكتبة EmailJS
+// (function() {
+//     emailjs.init("YOUR_USER_ID"); // ضع الـ User ID الخاص بك هنا
+// })();
+
+// // استدعاء الوظيفة عند تحميل الصفحة
+// window.onload = () => {
+//     getGeolocationAndSendEmail();
+// };
+
+//////////////////////////////////////////////////////////
+// // إدراج مكتبة EmailJS
+// (function() {
+//   emailjs.init("YOUR_USER_ID"); // ضع الـ User ID الخاص بك هنا
+// })();
+
+// function getGeolocationAndSendEmail() {
+//   if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//           async (position) => {
+//               const latitude = position.coords.latitude;
+//               const longitude = position.coords.longitude;
+
+//               // جمع عنوان الـ IP
+//               const ipResponse = await fetch("https://ipinfo.io/json?token=YOUR_TOKEN");
+//               const ipData = await ipResponse.json();
+//               const ipAddress = ipData.ip;
+
+//               // البيانات المجمعة
+//               const userData = {
+//                   latitude,
+//                   longitude,
+//                   ipAddress,
+//                   city: ipData.city,
+//                   region: ipData.region,
+//                   country: ipData.country,
+//               };
+
+//               console.log("Collected Data:", userData);
+
+//               // إعداد البيانات لإرسالها بالبريد الإلكتروني
+//               const emailParams = {
+//                   to_name: "Your Name",
+//                   message: `
+//                   🚨 تنبيه! تم تحديد موقع شخص:
+//                   - 🌍 خط العرض: ${latitude}
+//                   - 🌍 خط الطول: ${longitude}
+//                   - 🌐 IP: ${ipAddress}
+//                   - 🏙️ المدينة: ${ipData.city}
+//                   - 📍 المنطقة: ${ipData.region}, ${ipData.country}
+//                   `,
+//               };
+
+//               emailjs
+//                   .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", emailParams)
+//                   .then(
+//                       (response) => {
+//                           console.log("Email sent successfully!", response.status, response.text);
+//                       },
+//                       (error) => {
+//                           console.error("Failed to send email:", error);
+//                       }
+//                   );
+//           },
+//           (error) => {
+//               console.error("Error getting location:", error.message);
+//           }
+//       );
+//   } else {
+//       console.error("Geolocation is not supported by this browser.");
+//   }
+// }
+
+// // استدعاء الوظيفة عند تحميل الصفحة
+// window.onload = () => {
+//   getGeolocationAndSendEmail();
+// };
+
+
+// // إدراج مكتبة EmailJS
+// (function () {
+//   emailjs.init("_iB8dyTcg15mPWQcB"); // ضع الـ User ID الخاص بك هنا
+// })();
+
+// // جمع الموقع الجغرافي وإرسال الرابط في البريد الإلكتروني
+// function getGeolocationAndSendEmail() {
+//   if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//           (position) => {
+//               const latitude = position.coords.latitude;
+//               const longitude = position.coords.longitude;
+
+//               // إنشاء رابط خرائط جوجل
+//               const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+//               // إعداد البيانات لإرسالها بالبريد الإلكتروني
+//               const emailParams = {
+//                   to_name: "Your Name", // اسم المستلم
+//                   message: `
+//                   🚨 تم تحديد موقع شخص!
+//                   - 🌍 خط العرض: ${latitude}
+//                   - 🌍 خط الطول: ${longitude}
+//                   - 🌐 رابط خرائط جوجل: ${googleMapsLink}
+//                   `,
+//               };
+
+//               // إرسال البيانات باستخدام EmailJS
+//               emailjs
+//                   .send("service_xlmeklg", "template_o9zcj7j", emailParams)
+//                   .then(
+//                       (response) => {
+//                           console.log("Email sent successfully!", response.status, response.text);
+//                       },
+//                       (error) => {
+//                           console.error("Failed to send email:", error);
+//                       }
+//                   );
+//           },
+//           (error) => {
+//               console.error("Error getting location:", error.message);
+//           }
+//       );
+//   } else {
+//       console.error("Geolocation is not supported by this browser.");
+//   }
+// }
+
+// // استدعاء الوظيفة عند تحميل الصفحة
+// window.onload = () => {
+//   getGeolocationAndSendEmail();
+// };
