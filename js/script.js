@@ -138,11 +138,36 @@ setTimeout(showRandomMessage, 15000);
 
 
 document.getElementById("menu_toggle").addEventListener("click", function () {
-  gtag('event', 'button_click', {
+  gtag('event', 'Menu_click', {
     'event_category': 'interaction',
     'event_label': 'Menu List'
   });
 });
+document.getElementById("our_story_btn").addEventListener("click", function () {
+  gtag('event', 'our_story_btn', {
+    'event_category': 'interaction',
+    'event_label': 'our_story_btn'
+  });
+});
+document.getElementById("letter_btn").addEventListener("click", function () {
+  gtag('event', 'letter_btn', {
+    'event_category': 'interaction',
+    'event_label': 'letter_btn'
+  });
+});
+document.getElementById("downloaded_gift_btn").addEventListener("click", function () {
+  gtag('event', 'downloaded_gift_btn', {
+    'event_category': 'interaction',
+    'event_label': 'downloaded_gift_btn'
+  });
+});
+document.getElementById("Something_special_btn").addEventListener("click", function () {
+  gtag('event', 'Something_special_btn', {
+    'event_category': 'interaction',
+    'event_label': 'Something_special_btn'
+  });
+});
+
 
 window.addEventListener('scroll', function () {
   let scrollPosition = window.scrollY + window.innerHeight;
@@ -150,19 +175,19 @@ window.addEventListener('scroll', function () {
 
   // إذا كان المستخدم قد وصل إلى 50% من الصفحة
   if (scrollPosition >= documentHeight / 2) {
-    gtag('event', 'scroll', {
+    gtag('event', '50%_Scroll', {
       'event_category': 'engagement',
       'event_label': '50% Scroll'
     });
   }
   else if (scrollPosition >= documentHeight / 4) {
-    gtag('event', 'scroll', {
+    gtag('event', '25%_Scroll', {
       'event_category': 'engagement',
       'event_label': '25% Scroll'
     });
   }
   else if (scrollPosition >= documentHeight / 10) {
-    gtag('event', 'scroll', {
+    gtag('event', '10%_Scroll', {
       'event_category': 'engagement',
       'event_label': '10% Scroll'
     });
@@ -206,13 +231,13 @@ video.addEventListener('timeupdate', function () {
     });
   }
   else if (currentTime >= duration / 4) {
-    gtag('event', 'video_halfway', {
+    gtag('event', 'video_25', {
       'event_category': 'Media',
       'event_label': 'Video 25%'
     });
   }
   else if (currentTime >= duration / 10) {
-    gtag('event', 'video_halfway', {
+    gtag('event', 'video_10', {
       'event_category': 'Media',
       'event_label': 'Video 10%'
     });
