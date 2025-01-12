@@ -570,7 +570,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.875em;
+    font-size: 1.7em;
     line-height: 1.3em
 }
 
@@ -2696,13 +2696,18 @@ select.custom_select {
 }
 
 .quote_content_block_image {
-    display: block;
+    /* display: block;
     max-width: columns-width(2, 1);
-    margin: 0 auto 0.8125em
+    margin: 0 auto 0.8125em */
+    display: inline-block;
+    vertical-align: top;
+    width: 30.30303%;
+    margin-left: 1.51515%;
+    margin-right: 1.51515%
 }
 
 .quote_content_block_title {
-    font-size: 1.875em;
+    font-size: 1.4em;
     line-height: 1.3em;
     margin-bottom: 0.86667em;
     margin-left: 2.27273%;
@@ -3547,7 +3552,8 @@ a.load_more {
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
     overflow: hidden;
     background: black;
 }
@@ -3627,29 +3633,46 @@ body {
     margin-top: -18px;
 }
 
+.Main_Title_by_Karim .lantern_photo {
+    height: 3.5em;
+    margin-top: -15px;
+}
+.no_marginn{
+    padding-top: 0.2rem !important;
+}
+
+
+.lantern blockquote {
+    -webkit-background-size: 69px 65px;
+    -moz-background-size: 69px 65px;
+    -o-background-size: 69px 65px;
+    background-size: 69px 65px;
+    background-image: url(../images/butterfly1-583f0576620096ce69fc78c79e1470a3.png)
+}
+
 .letter-paper {
     /* background: #f3eacb; */
     background: rgb(255 233 158 / 60%);
     border: none;
-    padding: 25px;
-    box-shadow: 
-        2px 3px 3px rgba(0,0,0,0.3), 
-        inset 0 0 100px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-shadow:
+        2px 3px 3px rgba(0, 0, 0, 0.3),
+        inset 0 0 100px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-family: "Amiri", serif;
     /* font-family: "Aref Ruqaa", serif; */
     /* word-spacing: 0.2em; */
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     font-style: normal;
-    line-height: 1.5;
+    line-height: 1.6;
     max-width: 900px;
     margin: 0px 13px 50px 13px;
     text-align: right;
-    background-image: url(/images/beige-paper.png); 
-    background-blend-mode: multiply; 
-    filter: brightness(0.97); 
-    outline: 1px solid #c7bfa5; 
+    background-image: url(/images/beige-paper.png);
+    background-blend-mode: multiply;
+    filter: brightness(0.97);
+    outline: 1px solid #c7bfa5;
 }
 
 .final_quote {
@@ -3662,10 +3685,77 @@ body {
     font-family: "Cochin W01 Roman", "Times New Roman", "Times", serif;
 }
 
-.final_quote:before {
+.final_quote:before,
+.statistic_title:before,
+#messageText:before
+
+/*, .statistic_body:before */
+    {
     content: "\201C"
 }
 
-.final_quote:after {
+.final_quote:after,
+.statistic_title:after,
+#messageText:after
+
+/*, .statistic_body:after */
+    {
     content: "\201D"
+}
+
+.statistic_body {
+    padding: 0 20px;
+}
+
+.statistic_title {
+    padding: 0 20px;
+}
+
+
+.message-box {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    max-width: 300px;
+    padding: 17px;
+    background: rgba(255, 244, 230, 0.95);
+    border: 2px solid #FFB6C1;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    font-family: "Cochin W01 Roman", "Times New Roman", "Times", serif;
+}
+
+.message-box.show {
+    opacity: 1;
+}
+
+.close-btn {
+    background: #FF6F91;
+    color: white;
+    /* font-weight: 700; */
+    border: none;
+    height: 1.3rem;
+    width: 1.3rem;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 13px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.close-btn:hover {
+    background: #FF4D6D;
+}
+
+@media (max-width: 768px) {
+    .message-box {
+        max-width: 250px;
+        font-size: 16px;
+    }
 }
