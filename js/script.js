@@ -130,11 +130,39 @@ function closeMessage() {
   messageBox.classList.remove('show');
 }
 
-// Show a message every 60 seconds (adjust as needed)
-setInterval(showRandomMessage, 60000);
+// // Show a message every 60 seconds (adjust as needed)
+// setInterval(showRandomMessage, 60000);
 
-// Show the first message after 15 seconds
-setTimeout(showRandomMessage, 15000);
+// // Show the first message after 15 seconds
+// setTimeout(showRandomMessage, 15000);
+
+// Variables to manage intervals and reading state
+let messageInterval = setInterval(showRandomMessage, 60000);
+setTimeout(showRandomMessage, 15000); // Initial message after 15 seconds
+const letterSection = document.getElementById('letter-paper');
+let isReading = false;
+
+// Check if user is still reading without scrolling
+function checkReading() {
+    const letterPosition = letterSection.getBoundingClientRect();
+    if (letterPosition.top < window.innerHeight && letterPosition.bottom > 0) {
+        if (!isReading) {
+            clearInterval(messageInterval); // Stop messages if in the letter section
+            isReading = true;
+        }
+    } else {
+        if (isReading) {
+            messageInterval = setInterval(showRandomMessage, 60000); // Resume messages after leaving
+            isReading = false;
+        }
+    }
+}
+
+// Event listeners
+window.addEventListener('scroll', checkReading);
+setInterval(checkReading, 2000); // Check every 2 seconds if user is still reading
+
+
 
 
 document.getElementById("menu_toggle").addEventListener("click", function () {
