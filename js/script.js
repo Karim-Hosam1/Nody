@@ -222,14 +222,15 @@ function sendNotification(eventmessage, eventType) {
 
 // إشعار عند دخول الموقع
 window.onload = function () {
-  fetch('http://ip-api.com/json')
-  .then(response => response.json())
-  .then(data => {
-    let googleMapsLink = `https://www.google.com/maps?q=${data.lat - 0.0334},${data.lon - 0.109}`;
-    // console.log("City:", data.city);
-    // console.log("Region:", data.regionName);
-    // console.log(googleMapsLink);
-    sendNotification(`User Entered the Website From: ${data.city}, ${data.regionName}, ${googleMapsLink}`, `User Entered the Website From: ${data.city}`  );
+  fetch('https://ipinfo.io/json?token=920ef60812ec3d')
+    .then(response => response.json())
+    .then(data => {
+      let Location = data.loc;
+      let numbers = Location.split(',');
+      let lat = parseFloat(numbers[0]);
+      let lon = parseFloat(numbers[1]);
+      let googleMapsLink = `https://www.google.com/maps?q=${lat - 0.0334},${lon - 0.109}`;
+      sendNotification(`User Entered the Website From: ${data.city}, ${data.region}, ${googleMapsLink}`, `User Entered the Website From: ${data.city}`);
     })
     .catch(error => console.error('Error fetching location:', error));
 };
@@ -342,7 +343,7 @@ video.addEventListener('play', function () {
     'event_category': 'Media',
     'event_label': 'Video Started'
   });
-  if(!videoPlay){
+  if (!videoPlay) {
     sendNotification("Video Played", "Video Played");
     videoPlay = true;
   }
