@@ -23,6 +23,15 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&display=swap"
     rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "_iB8dyTcg15mPWQcB",
+            });
+        })();
+    </script>
 </head>
 
 <body>
@@ -51,8 +60,8 @@
                 download="A Special Gift Just for You.png" href="images/Full Design.png">A Special Gift Just for You <i
                   class="fa-solid fa-download"></i></a>
 
-            <li class="level_0 home active main_menu"><a class="menu_link level_0 home main_menu"
-                href="#Video_Title" id="Something_special_btn">Something Special, Just for You</a>
+            <li class="level_0 home active main_menu"><a class="menu_link level_0 home main_menu" href="#Video_Title"
+                id="Something_special_btn">Something Special, Just for You</a>
               <img class="lantern_photo" src="images/lantern.png" alt="lantern">
             </li>
             </li>
@@ -131,7 +140,7 @@
         <!-- Message Box Template -->
         <div class="message-box" id="messageBox">
           <p id="messageText">Every love story has its ups and downs, but the best ones always find their way back.</p>
-          <button class="close-btn" onclick="closeMessage()">X</button>
+          <button class="close-btn" onclick="ManualcloseMessage()">X</button>
         </div>
 
 
