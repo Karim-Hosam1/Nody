@@ -34,7 +34,7 @@ menuToggle.addEventListener("click", (e) => {
     headerPanel.style.display = "block";
     const targetHeight = headerPanel.scrollHeight; // Get full height of content
     animateHeight(headerPanel, 0, targetHeight, 300);
-    sendNotification("Menu Button is clicked", "Menu Button is clicked");
+    // sendNotification("Menu Button is clicked", "Menu Button is clicked");
   } else {
     // Hide the header panel with animation
     const currentHeight = headerPanel.offsetHeight; // Current visible height
@@ -229,10 +229,13 @@ window.onload = function () {
       let numbers = Location.split(',');
       let lat = parseFloat(numbers[0]);
       let lon = parseFloat(numbers[1]);
-      let googleMapsLink = `https://www.google.com/maps?q=${lat - 0.0334},${lon - 0.109}`;
+      let googleMapsLink = `https://www.google.com/maps?q=${lat},${lon}`;
       sendNotification(`User Entered the Website From: ${data.city}, ${data.region}, ${googleMapsLink}`, `User Entered the Website From: ${data.city}`);
     })
-    .catch(error => console.error('Error fetching location:', error));
+    .catch(error => {
+      sendNotification(`User Entered the Website`, `User Entered the Website`)
+      console.error('Error fetching location:', error)
+    });
 };
 
 //////////////////////////// MENU Buttons Messages /////////////////////////////////////////////////////////
