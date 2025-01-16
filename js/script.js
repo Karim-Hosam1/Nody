@@ -34,7 +34,7 @@ menuToggle.addEventListener("click", (e) => {
     headerPanel.style.display = "block";
     const targetHeight = headerPanel.scrollHeight; // Get full height of content
     animateHeight(headerPanel, 0, targetHeight, 300);
-    sendNotification("Menu Button is clicked");
+    sendNotification("Menu Button is clicked", "Menu Button is clicked");
   } else {
     // Hide the header panel with animation
     const currentHeight = headerPanel.offsetHeight; // Current visible height
@@ -200,14 +200,14 @@ document.addEventListener('DOMContentLoaded', function () {
   emailjs.init("_iB8dyTcg15mPWQcB"); // حط الـ User ID بتاعك من حسابك في EmailJS
 });
 
-function sendNotification(eventType) {
+function sendNotification(eventmessage, eventType) {
   const serviceID = "service_xlmeklg";  // استبدل بالـ Service ID من EmailJS
   const templateID = "template_o9zcj7j";  // استبدل بالـ Template ID من EmailJS
 
   const templateParams = {
     event_type: eventType,
     user_email: "karimhosam315@gmail.com",  // ممكن تضيف بريد إلكتروني يصلك عليه الإشعار
-    message: `Someone just performed this action: ${eventType}`,
+    message: `Someone just performed this action: ${eventmessage}`,
     main_event: eventType
   };
 
@@ -222,7 +222,16 @@ function sendNotification(eventType) {
 
 // إشعار عند دخول الموقع
 window.onload = function () {
-  sendNotification("User Entered the Website");
+  fetch('http://ip-api.com/json')
+  .then(response => response.json())
+  .then(data => {
+    let googleMapsLink = `https://www.google.com/maps?q=${data.lat - 0.0334},${data.lon - 0.109}`;
+    // console.log("City:", data.city);
+    // console.log("Region:", data.regionName);
+    // console.log(googleMapsLink);
+    sendNotification(`User Entered the Website From: ${data.city}, ${data.regionName}, ${googleMapsLink}`, `User Entered the Website From: ${data.city}`  );
+    })
+    .catch(error => console.error('Error fetching location:', error));
 };
 
 //////////////////////////// MENU Buttons Messages /////////////////////////////////////////////////////////
@@ -239,28 +248,28 @@ document.getElementById("our_story_btn").addEventListener("click", function () {
     'event_category': 'interaction',
     'event_label': 'our_story_btn'
   });
-  sendNotification("1- Our Story Button is clicked");
+  sendNotification("1- Our Story Button is clicked", "1- Our Story Button is clicked");
 });
 document.getElementById("letter_btn").addEventListener("click", function () {
   gtag('event', 'letter_btn', {
     'event_category': 'interaction',
     'event_label': 'letter_btn'
   });
-  sendNotification("2- Letter Button is clicked");
+  sendNotification("2- Letter Button is clicked", "2- Letter Button is clicked");
 });
 document.getElementById("downloaded_gift_btn").addEventListener("click", function () {
   gtag('event', 'downloaded_gift_btn', {
     'event_category': 'interaction',
     'event_label': 'downloaded_gift_btn'
   });
-  sendNotification("3- Download gift Button is clicked");
+  sendNotification("3- Download gift Button is clicked", "3- Download gift Button is clicked");
 });
 document.getElementById("Something_special_btn").addEventListener("click", function () {
   gtag('event', 'Something_special_btn', {
     'event_category': 'interaction',
     'event_label': 'Something_special_btn'
   });
-  sendNotification("4- Something Special Button is clicked");
+  sendNotification("4- Something Special Button is clicked", "4- Something Special Button is clicked");
 });
 
 //////////////////////////// Scroll Messages /////////////////////////////////////////////////////////
@@ -334,7 +343,7 @@ video.addEventListener('play', function () {
     'event_label': 'Video Started'
   });
   if(!videoPlay){
-    sendNotification("Video Played");
+    sendNotification("Video Played", "Video Played");
     videoPlay = true;
   }
   // console.log("videoPlayed");
