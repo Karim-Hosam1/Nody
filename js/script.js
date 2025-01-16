@@ -207,7 +207,8 @@ function sendNotification(eventType) {
   const templateParams = {
     event_type: eventType,
     user_email: "karimhosam315@gmail.com",  // ممكن تضيف بريد إلكتروني يصلك عليه الإشعار
-    message: `Someone just performed this action: ${eventType}`
+    message: `Someone just performed this action: ${eventType}`,
+    main_event: eventType
   };
 
   emailjs.send(serviceID, templateID, templateParams)
@@ -325,13 +326,17 @@ window.addEventListener('scroll', function () {
 //////////////////////////// Video Play and paused Messages /////////////////////////////////////////////////////////
 
 // تتبع الفيديو
-
+let videoPlay = false;
 // تشغيل الفيديو
 video.addEventListener('play', function () {
   gtag('event', 'video_play', {
     'event_category': 'Media',
     'event_label': 'Video Started'
   });
+  if(!videoPlay){
+    sendNotification("Video Played");
+    videoPlay = true;
+  }
   // console.log("videoPlayed");
 });
 
